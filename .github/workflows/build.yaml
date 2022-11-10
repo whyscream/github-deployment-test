@@ -1,0 +1,23 @@
+name: "Build and publish package"
+
+on:
+  push
+    # tags:
+    #   - '*'
+
+jobs:
+  build:
+    name: "Build package"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build package
+        run: echo "hello world" > package.txt
+
+      - name: Save package
+        uses: actions/upload-artifact@v3
+        with:
+          name: package
+          path: package.txt
