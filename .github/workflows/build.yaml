@@ -1,19 +1,17 @@
 name: "Build and publish package"
 
 on:
-  # push
-  #   # tags:
-  #   #   - '*'
-  workflow_run:
-    workflows: [Run tests]
-    types:
-      - completed
+  push:
+    tags:
+      - '*'
 
 jobs:
+  tests:
+    uses: ./.github/workflows/test.yaml
   build:
     name: "Build package"
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: tests
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

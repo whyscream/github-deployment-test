@@ -1,7 +1,8 @@
-name: Run tests
+name: Run all tests
 
 on:
-  push
+  - push
+  - workflow_call
 
 jobs:
   tests:
@@ -11,7 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Run tests
+    - name: Run simple test
       run:
-        # test is failing so no followup?
-        echo "All is not so well" && exit 1
+        echo "All is well"
