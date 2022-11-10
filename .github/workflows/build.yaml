@@ -1,13 +1,12 @@
 name: "Build and publish package"
 
 on:
-  # push
-  #   # tags:
-  #   #   - '*'
   workflow_run:
     workflows: [Run tests]
     types:
       - completed
+    tags:
+      - '*'
 
 jobs:
   build:
