@@ -13,5 +13,5 @@ jobs:
 
     - name: Run tests
       run:
-        # test is failing
+        # test is failing so no followup?
         echo "All is not so well" && exit 1
