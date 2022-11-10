@@ -1,0 +1,16 @@
+name: Run tests
+
+on:
+  push
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run tests
+      run:
+        echo "All is well"
