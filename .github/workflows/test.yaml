@@ -14,4 +14,5 @@ jobs:
 
     - name: Run simple test
       run:
-        echo "All is well"
+        # fail the test
+        echo "All is not so well" && exit 1
