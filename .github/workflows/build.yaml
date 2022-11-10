@@ -13,11 +13,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build package
-        run: echo "hello world" > package.txt
+      - name: Build packages
+        run: |
+          mkdir dist
+          echo "hello world" > dist/package.txt
 
-      - name: Save package
+      - name: Save packages
         uses: actions/upload-artifact@v3
         with:
-          name: package
-          path: package.txt
+          name: packages
+          path: dist/*
+
+  upload:
+    name: "Upload package"
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Retrieve packages
+        uses: actions/download-artifact@v3
+        with:
+          name: packages
+          path: dist-files
+
+      - name: Verify packages
+        run: ls -al
+        working-directory: dist-files
